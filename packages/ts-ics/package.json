@@ -1,6 +1,6 @@
 {
-  "name": "ts-ics",
-  "author": "Neuvernetzung Medienagentur UG",
+  "name": "@timurcravtov/ts-ics",
+  "author": "Aion",
   "version": "2.0.5",
   "description": "Create and parse ICS format for TypeScript",
   "type": "module",
@@ -31,11 +31,11 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Neuvernetzung/ts-ics.git"
-  },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "types": "./dist/index.d.ts"
 }

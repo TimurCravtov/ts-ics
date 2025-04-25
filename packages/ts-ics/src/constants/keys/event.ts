@@ -10,6 +10,7 @@ export const VEVENT_TO_KEYS = {
   categories: "CATEGORIES",
   created: "CREATED",
   description: "DESCRIPTION",
+
   lastModified: "LAST-MODIFIED",
   location: "LOCATION",
   exceptionDates: "EXDATE",

@@ -7,6 +7,7 @@ export const VTIMEZONE_STANDARD_OBJECT_KEY = "STANDARD";
 export const VTIMEZONE_DAYLIGHT_OBJECT_KEY = "DAYLIGHT";
 export const VEVENT_OBJECT_KEY = "VEVENT";
 export const VALARM_OBJECT_KEY = "VALARM";
+export const VTODO_OBJECT_KEY = "VTODO";
 
 export type IcsComponents = typeof ICS_COMPONENTS;
 export type IcsComponent = IcsComponents[number];
@@ -17,6 +18,7 @@ export const ICS_COMPONENTS = [
   VTIMEZONE_STANDARD_OBJECT_KEY,
   VTIMEZONE_DAYLIGHT_OBJECT_KEY,
   VEVENT_OBJECT_KEY,
+  VTODO_OBJECT_KEY,
   VALARM_OBJECT_KEY,
 ] as const;
 
