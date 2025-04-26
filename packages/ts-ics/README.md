@@ -1,10 +1,8 @@
-# TS-ICS
-
-[![neuvernetzung-logo](https://raw.githubusercontent.com/Neuvernetzung/ts-ics/master/public/Header.png)](https://neuvernetzung.de/?utm_source=github&utm_campaign=ts-ics&utm_id=ts-ics)
-
-[![NPM](https://nodei.co/npm/ts-ics.png)](https://nodei.co/npm/ts-ics/)
+# @timurcravtov/TS-ICS
 
 This library can parse and create Ics files and provides TypeScript types for easy handling and aims to be fully [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545.html) compliant.
+
+Fork of `ts-ics` library
 
 ## Motivation
 
@@ -12,7 +10,7 @@ Many of the Ics libraries provide good functionality, but none of them are type 
 
 ## Installation
 
-`npm i ts-ics`
+`npm i @timurcravtov/ts-ics`
 
 ## generate
 
