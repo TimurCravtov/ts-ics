@@ -1,18 +1,22 @@
-# @timurcravtov/TS-ICS
+## @timurcravtov/ts-ics
+
+<div align="center">
+<img src="assets/img.png">
+</div>
+
+<img src="https://img.shields.io/npm/v/@timurcravtov/ts-ics"> <img src="https://img.shields.io/npm/dy/@timurcravtov/ts-ics?label=npm%20downloads"> <img src="https://img.shields.io/github/last-commit/aionlang/aion">
 
 This library can parse and create Ics files and provides TypeScript types for easy handling and aims to be fully [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545.html) compliant.
 
 Fork of `ts-ics` library
 
-## Motivation
-
-Many of the Ics libraries provide good functionality, but none of them are type safe. This library can parse Ics strings with any validator, thanks to [Standard-Schema](https://github.com/standard-schema/standard-schema).
-
 ## Installation
 
-`npm i @timurcravtov/ts-ics`
+```bash
+npm install @timurcravtov/ts-ics
+```
 
-## generate
+## Library using.
 
 ### generateIcsCalendar
 
@@ -52,8 +56,6 @@ const calendarString = generateIcsCalendar<NonStandard>(calendar, {
   },
 });
 ```
-
-## parse
 
 ### IcsCalendar
 
@@ -155,10 +157,6 @@ const dates = extendByRecurrenceRule(rule, {
   end: addDays(start, 1),
 });
 ```
-
-## License
-
-MIT - [License](https://github.com/Neuvernetzung/ts-ics/blob/master/LICENSE)
 
 ## Thanks
 
