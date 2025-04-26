@@ -15,6 +15,7 @@ export const VTODO_TO_KEYS = {
     recurrenceRule: 'RRULE',
     stamp: 'DTSTAMP',
     due: 'DUE',
+    location: 'LOCATION',
     summary: 'SUMMARY',
     uid: 'UID',
     url: 'URL',
