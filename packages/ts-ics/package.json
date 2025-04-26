@@ -1,7 +1,7 @@
 {
   "name": "@timurcravtov/ts-ics",
   "author": "Aion",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Create and parse ICS format for TypeScript",
   "type": "module",
   "main": "dist/index.cjs",

@@ -1,0 +1,163 @@
+## @timurcravtov/ts-ics
+
+<div align="center">
+<img src="../../../assets/img.png">
+</div>
+
+<img src="https://img.shields.io/npm/v/@timurcravtov/ts-ics"> <img src="https://img.shields.io/npm/dy/@timurcravtov/ts-ics?label=npm%20downloads"> <img src="https://img.shields.io/github/last-commit/aionlang/aion">
+
+This library can parse and create Ics files and provides TypeScript types for easy handling and aims to be fully [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545.html) compliant.
+
+Fork of `ts-ics` library
+
+## Installation
+
+```bash
+npm install @timurcravtov/ts-ics
+```
+
+## Library using.
+
+### generateIcsCalendar
+
+```ts
+import { generateIcsCalendar, type IcsCalendar } from "ts-ics";
+
+const calendar: IcsCalendar = {...}
+
+const icsCalendarString = generateIcsCalendar(calendar);
+```
+
+### generateIcsEvent
+
+```ts
+import { generateIcsEvent, type IcsEvent } from "ts-ics";
+
+const event: IcsEvent = {...}
+
+const icsEventString = generateIcsEvent(event);
+```
+
+### generate non standard values
+
+Non-standard values must be prefixed with `X-`. Unhandled non-standard values are automatically prefixed and converted to upper case, and the value is converted to a string.
+
+```ts
+type NonStandard = { isCustomer: string }
+
+const calendar: IcsCalendar<NonStandard> = {
+  nonStandard: { isCustomer: "yeah" },
+  ...
+};
+
+const calendarString = generateIcsCalendar<NonStandard>(calendar, {
+  nonStandard: {
+    isCustomer: { name: "X-IS-CUSTOMER", generate: (v) => ({ value: v }) },
+  },
+});
+```
+
+### IcsCalendar
+
+#### without parsing
+
+```ts
+import { convertIcsCalendar, type IcsCalendar } from "ts-ics";
+
+const calendar: IcsCalendar = convertIcsCalendar(undefined, icsCalendarString);
+```
+
+#### parse with zod
+
+```ts
+import { type IcsCalendar } from "ts-ics";
+import { parseIcsCalendar } from "@ts-ics/schema-zod";
+
+const calendarParsed: IcsCalendar = parseIcsCalendar(icsCalendarString);
+```
+
+#### provide your own validator
+
+This library uses [Standard-Schema](https://github.com/standard-schema/standard-schema) under the hood, so every schema library that implements the spec can be used.
+
+```ts
+import { convertIcsCalendar, type IcsCalendar } from "ts-ics";
+import { zIcsCalendar } from "@ts-ics/schema-zod";
+
+const calendar: IcsCalendar = convertIcsCalendar(
+  zIcsCalendar,
+  icsCalendarString
+);
+```
+
+### IcsEvent
+
+#### without parsing
+
+```ts
+import { convertIcsEvent, type IcsEvent } from "ts-ics";
+
+const event: IcsEvent = convertIcsEvent(undefined, icsEventString);
+```
+
+#### parse with zod
+
+```ts
+import { type IcsEvent } from "ts-ics";
+import { parseIcsEvent } from "@ts-ics/schema-zod";
+
+const eventParsed: IcsEvent = parseIcsEvent(icsEventString);
+```
+
+#### provide your own validator
+
+This library uses [Standard-Schema](https://github.com/standard-schema/standard-schema) under the hood, so every schema library that implements the spec can be used.
+
+```ts
+import { convertIcsEvent, type IcsEvent } from "ts-ics";
+import { zIcsEvent } from "@ts-ics/schema-zod";
+
+const calendar: IcsEvent = convertIcsEvent(zIcsEvent, icsEventString);
+```
+
+### parse non standard values
+
+Non-standard values must be prefixed with `X-`. Unhandled non-standard values are automatically un-prefixed and converted to camel case, and the value is converted to a string.
+
+```ts
+const calendarString = `...
+  X-IS-CUSTOMER:yeah
+  ...`;
+
+const calendar = convertIcsCalendar(undefined, calendarString, {
+  nonStandard: {
+    isCustomer: {
+      name: "X-IS-CUSTOMER",
+      convert: (line) => line.value,
+      schema: z.string(), // optionally provide any validator
+    },
+  },
+});
+```
+
+## utils
+
+### extendByRecurrenceRule
+
+```ts
+import { extendByRecurrenceRule } from "ts-ics";
+
+const start = new Date(Date.UTC(2023, 9, 5));
+const ruleString = "FREQ=DAILY;BYMINUTE=15,16,17,18,19;BYSECOND=0,20,40";
+
+const rule = parseIcsRecurrenceRule(ruleString);
+
+const dates = extendByRecurrenceRule(rule, {
+  start,
+  end: addDays(start, 1),
+});
+```
+
+## Thanks
+
+Thanks to [iCalendar.org](https://icalendar.org/) for the ics documentation and the many examples which are used for testing purposes.
